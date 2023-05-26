@@ -1,0 +1,22 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: callforcode-wap-frontend-service
+  namespace: callforcode
+  labels:
+    app: callforcode-wap-frontend
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: callforcode-wap-frontend-service
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: callforcode-wap-frontend

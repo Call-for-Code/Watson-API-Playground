@@ -1,0 +1,22 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: callforcode-wap-backend-service
+  namespace: callforcode
+  labels:
+    app: callforcode-wap-backend
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: callforcode-wap-backend-service
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: callforcode-wap-backend

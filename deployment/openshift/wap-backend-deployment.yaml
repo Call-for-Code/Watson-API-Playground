@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: callforcode
+  name: callforcode-wap-backend-deployment
+  labels:
+    app: callforcode-wap-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: callforcode-wap-backend
+  template:
+    metadata:
+      labels:
+        app: callforcode-wap-backend
+    spec:
+      imagePullSecrets:
+        - name: rivendell-image-pull-secret
+      containers:
+        - name: callforcode-wap-backend
+          image: "rivendell.austinlab.test:5000/callforcode/callforcode-wap-backend:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SERVICE_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: callforcode-wap-backend-secret
+                  key: SERVICE_BASE_URL
+            - name: SERVICE_SUFFIX
+              valueFrom:
+                secretKeyRef:
+                  name: callforcode-wap-backend-secret
+                  key: SERVICE_SUFFIX
+            - name: API_ID
+              valueFrom:
+                secretKeyRef:
+                  name: callforcode-wap-backend-secret
+                  key: API_ID
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: callforcode-wap-backend-secret
+                  key: API_KEY

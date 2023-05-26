@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  wap-backend-dev:
+    container_name: wap-backend-dev
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    ports:
+      - "5000:5000"

@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: callforcode
+  name: callforcode-wap-frontend-deployment
+  labels:
+    app: callforcode-wap-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: callforcode-wap-frontend
+  template:
+    metadata:
+      labels:
+        app: callforcode-wap-frontend
+    spec:
+      imagePullSecrets:
+        - name: rivendell-image-pull-secret
+      containers:
+        - name: callforcode-wap-frontend
+          image: "rivendell.austinlab.test:5000/callforcode/callforcode-wap-frontend:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  wap-frontend-service:
+    container_name: wap-frontend-service
+    image: wap-frontend
+    build:
+      dockerfile: Dockerfile
+      context: ../../frontend/
+    ports:
+      - "8080:80"
+    restart: always
+
+  wap-backend-service:
+    container_name: wap-backend-service
+    image: wap-backend
+    build:
+      dockerfile: Dockerfile
+      context: ../../backend/
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVICE_BASE_URL=$SERVICE_BASE_URL
+      - SERVICE_SUFFIX=/v3/translate?version=2018-05-01
+      - API_ID=apikey
+      - API_KEY=$API_KEY
+    restart: always
