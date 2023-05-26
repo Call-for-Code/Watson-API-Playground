@@ -2,12 +2,16 @@ FROM node:lts-slim
 
 RUN apt update && apt upgrade -y
 
-WORKDIR /app
-COPY package.json .
+RUN useradd --create-home --uid 1001 --gid 0 appuser
+WORKDIR /home/appuser
 
-RUN npm install
+COPY --chown=1001:0 package.json .
 
-COPY . .
+RUN npm install \
+    && mkdir -p /.npm \
+    && chown -R 1000700000:0 /.npm
+
+COPY --chown=1001:0 . .
 
 EXPOSE 5000
 

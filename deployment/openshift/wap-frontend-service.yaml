@@ -12,8 +12,8 @@ spec:
   ports:
     - name: callforcode-wap-frontend-service
       protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 3000
+      targetPort: 3000
   internalTrafficPolicy: Cluster
   type: ClusterIP
   ipFamilyPolicy: SingleStack
