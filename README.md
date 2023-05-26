@@ -1,6 +1,6 @@
 # Watson API Playground
 
-Welcome to the Watson APIs playground!
+Welcome to the Watson APIs playground! An online demo is available [here](https://callforcode-wap.apps.ocpvirt.austin.ourlab.cloud/).
 
 ## Available APIs
 
