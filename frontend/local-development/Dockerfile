@@ -1,4 +1,4 @@
-FROM node:16.20.0-buster-slim AS base
+FROM node:lts-slim AS base
 
 RUN npm -g install npm@latest
 

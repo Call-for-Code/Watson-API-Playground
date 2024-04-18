@@ -5,10 +5,12 @@ services:
     container_name: callforcode-wap-frontend-service
     image: wap-frontend
     build:
-      dockerfile: Dockerfile
+      dockerfile: ./local-development/Dockerfile
       context: ../../frontend/
     ports:
       - "3000:3000"
+    environment:
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
     restart: always
 
   callforcode-wap-backend-service:
